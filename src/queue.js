@@ -15,21 +15,60 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 class Queue {
 
+  queue = {
+    value: undefined,
+    next: null
+  }
+  queueLength = 0
+
   getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.queue;
+
+  // function getLastEl(queue){
+  //     if(queue.next == null){
+  //       return queue;
+  //     } else {
+  //       return getLastEl(queue.next);
+  //     }
+  //   }
+  //   return getLastEl(this.queue);
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  enqueue(value) {
+    let length = this.queueLength;
+    console.log(this.queue);
+    console.log(length);
+    let el = {
+      value: value,
+      next : null,
+    }
+    function getLastEl(queue){
+
+      if(length == 0){
+        queue.value = el.value;
+        queue.next = el.next;
+        return;
+      } else if(queue.next == null){
+        queue.next = el;
+        return;
+      } else {
+        getLastEl(queue.next);
+      }
+    }
+    getLastEl(this.queue);
+    this.queueLength++;
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let next = this.queue.next;
+    let value = this.queue.value;
+    this.queue.value = next.value;
+    this.queue.next = next.next;
+    next.next = null;
+    return value;
   }
 }
+
 
 module.exports = {
   Queue

@@ -26,7 +26,7 @@ function removeKFromList(l, k) {
   let list = l;
   let prev;
   let nextElement;
-  console.debug(l, 'first');
+  //console.debug(l, 'first');
 
   function checkElements(l,k){
     if(l.next == null){
@@ -38,7 +38,7 @@ function removeKFromList(l, k) {
       }
       
      else {
-      console.debug(l, 'check...');
+      //console.debug(l, 'check...');
       try{
         if(l.value == k){   
           if(prev == undefined){
@@ -56,7 +56,7 @@ function removeKFromList(l, k) {
         }
         return checkElements(nextElement,k);
       } catch (e){
-        console.debug(e);
+        //console.debug(e);
       }
       
     }
